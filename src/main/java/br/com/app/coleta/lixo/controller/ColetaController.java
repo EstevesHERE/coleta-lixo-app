@@ -24,9 +24,9 @@ public class ColetaController {
     }
 
     @PostMapping("/agendamento")
-    public ResponseEntity<?> agendaColeta(@RequestBody ColetaDTO coletaDTO) {
-        //coletaService.agendarColeta(agendamentoDTO);
-        return ResponseEntity.ok().build();
+    public ResponseEntity agendaColeta(@RequestBody ColetaDTO coletaDTO) {
+        coletaService.agendarColeta(coletaDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping("/agendamento/{idColeta}")

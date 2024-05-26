@@ -30,4 +30,20 @@ public class Coleta {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_rota")
     public Rota rota;
+
+    public Coleta(long idColeta, String nomeBairro, double numeroVolume, Date dataColeta, Date dataRegistro, Rota rota) {
+        this.idColeta = idColeta;
+        this.nomeBairro = nomeBairro;
+        this.numeroVolume = numeroVolume;
+        this.dataColeta = dataColeta;
+        this.dataRegistro = dataRegistro;
+        this.rota = rota;
+    }
+
+    public Coleta(String nomeBairro, double numeroVolume, Date dataColeta, Date dataRegistro) {
+        this.nomeBairro = nomeBairro;
+        this.numeroVolume = numeroVolume;
+        this.dataColeta = dataColeta;
+        this.dataRegistro = dataRegistro;
+    }
 }

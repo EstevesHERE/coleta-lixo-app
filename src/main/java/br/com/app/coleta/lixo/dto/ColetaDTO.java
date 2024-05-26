@@ -9,7 +9,6 @@ import java.util.Date;
 
 @Getter
 @Setter
-@AllArgsConstructor
 public class ColetaDTO {
 
     @JsonProperty("id_coleta")
