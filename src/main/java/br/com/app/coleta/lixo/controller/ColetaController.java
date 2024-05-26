@@ -1,27 +1,27 @@
 package br.com.app.coleta.lixo.controller;
 
 import br.com.app.coleta.lixo.dto.ColetaDTO;
+import br.com.app.coleta.lixo.models.Coleta;
 import br.com.app.coleta.lixo.service.ColetaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@SpringBootApplication
+import java.util.List;
+
+@RestController
 @RequiredArgsConstructor
-@RestController("/v1/coletas")
+@RequestMapping("/v1/coletas")
 public class ColetaController {
 
     private final ColetaService coletaService;
-
     @GetMapping
-    public String buscaTodasColetas(){
-        return "OK";
+    public ResponseEntity<List<Coleta>> buscaTodasColetas() {
+        var listaColetas = coletaService.buscarTodasColetas();
+        return ResponseEntity.status(HttpStatus.OK).body(listaColetas);
     }
-//    public ResponseEntity<?> buscaTodasColetas() {
-//        coletaService.buscarTodasColetas();
-//        return ResponseEntity.ok().build();
-//    }
 
     @PostMapping("/agendamento")
     public ResponseEntity<?> agendaColeta(@RequestBody ColetaDTO coletaDTO) {

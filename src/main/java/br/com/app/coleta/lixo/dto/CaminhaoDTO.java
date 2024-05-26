@@ -1,9 +1,16 @@
 package br.com.app.coleta.lixo.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class CaminhaoDTO {
-    public long id_caminhao;
+
+    @JsonProperty("id_caminhao")
+    public long idCaminhao;
     public String modelo;
-    public int numero_capacidade;
-    public int numero_max_capacidade;
-    public String nome_status;
+    @JsonProperty("numero_capacidade")
+    public int numeroCapacidade;
+    @JsonProperty("numero_max_capacidade")
+    public int numeroMaximoCapacidade;
+    @JsonProperty("nome_status")
+    public String nomeStatus;
 }

@@ -6,13 +6,10 @@ import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.Date;
 
-@Entity
-@Table(name = "tbl_coleta")
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
+@Entity(name = "tbl_coleta")
 public class Coleta {
     @Id
     @Column(name = "id_coleta")

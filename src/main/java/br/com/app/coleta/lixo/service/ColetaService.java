@@ -16,9 +16,8 @@ public class ColetaService {
     private final ColetaRepository coletaRepository;
 
     public List<Coleta> buscarTodasColetas() {
-        LocalDate hoje = LocalDate.now();
-        return coletaRepository.findAll();
-
+        var listColeta = coletaRepository.findAll();
+        return listColeta;
     }
 
     public void agendarColeta(ColetaDTO coletaDTO) {
