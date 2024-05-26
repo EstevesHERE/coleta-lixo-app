@@ -18,7 +18,7 @@ public class ColetaController {
 
     private final ColetaService coletaService;
     @GetMapping
-    public ResponseEntity<List<Coleta>> buscaTodasColetas() {
+    public ResponseEntity<List<ColetaDTO>> buscaTodasColetas() {
         var listaColetas = coletaService.buscarTodasColetas();
         return ResponseEntity.status(HttpStatus.OK).body(listaColetas);
     }
