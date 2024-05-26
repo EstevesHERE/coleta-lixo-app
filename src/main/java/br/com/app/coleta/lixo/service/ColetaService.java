@@ -24,13 +24,12 @@ public class ColetaService {
         coletaRepository.save(new Coleta(coletaDTO.getNomeBairro(), coletaDTO.getNumeroVolume(), coletaDTO.dataColeta, coletaDTO.getDataRegistro()));
     }
 
-    public void reagendarColeta() {
-
+    public void reagendarColeta(ColetaDTO coletaDTO) {
+        coletaRepository.save(new Coleta(coletaDTO.getNomeBairro(), coletaDTO.getNumeroVolume(), coletaDTO.dataColeta, coletaDTO.getDataRegistro()));
     }
 
-    public void deletarColeta(Long idColeta) {
-        coletaRepository.deleteById(idColeta);
-
+    public void deletarColeta(String idColeta) {
+        coletaRepository.deleteById(Long.valueOf(idColeta));
     }
 
 }

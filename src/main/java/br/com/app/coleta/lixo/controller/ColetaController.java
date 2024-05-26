@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.http.HttpStatus.*;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/v1/coletas")
@@ -20,22 +22,24 @@ public class ColetaController {
     @GetMapping
     public ResponseEntity<List<ColetaDTO>> buscaTodasColetas() {
         var listaColetas = coletaService.buscarTodasColetas();
-        return ResponseEntity.status(HttpStatus.OK).body(listaColetas);
+        return ResponseEntity.status(OK).body(listaColetas);
     }
 
     @PostMapping("/agendamento")
     public ResponseEntity agendaColeta(@RequestBody ColetaDTO coletaDTO) {
         coletaService.agendarColeta(coletaDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(CREATED).build();
     }
 
     @PutMapping("/agendamento/{idColeta}")
-    public ResponseEntity<?> reagendamentoColeta(@PathVariable String idColeta) {
-        return ResponseEntity.ok().build();
+    public ResponseEntity reagendamentoColeta(@PathVariable String idColeta, @RequestBody ColetaDTO coletaDTO) {
+        coletaService.reagendarColeta(coletaDTO);
+        return ResponseEntity.status(NO_CONTENT).build();
     }
 
     @DeleteMapping("/agendamento/{idColeta}")
-    public ResponseEntity<?> delecaoAgendamento(@PathVariable String idColeta) {
-        return ResponseEntity.ok().build();
+    public ResponseEntity delecaoAgendamento(@PathVariable String idColeta) {
+        coletaService.deletarColeta(idColeta);
+        return ResponseEntity.status(NO_CONTENT).build();
     }
 }
