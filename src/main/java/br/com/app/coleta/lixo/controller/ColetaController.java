@@ -33,7 +33,7 @@ public class ColetaController {
 
     @PutMapping("/agendamento/{idColeta}")
     public ResponseEntity reagendamentoColeta(@PathVariable String idColeta, @RequestBody ColetaDTO coletaDTO) {
-        coletaService.reagendarColeta(coletaDTO);
+        coletaService.reagendarColeta(coletaDTO, idColeta);
         return ResponseEntity.status(NO_CONTENT).build();
     }
 

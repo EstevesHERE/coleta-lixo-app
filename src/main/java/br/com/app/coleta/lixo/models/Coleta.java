@@ -14,7 +14,7 @@ public class Coleta {
     @Id
     @Column(name = "id_coleta")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long idColeta;
+    public Long idColeta;
     @NotNull
     @Column(name = "nome_bairro")
     public String nomeBairro;
@@ -31,7 +31,7 @@ public class Coleta {
     @JoinColumn(name = "id_rota")
     public Rota rota;
 
-    public Coleta(long idColeta, String nomeBairro, double numeroVolume, Date dataColeta, Date dataRegistro, Rota rota) {
+    public Coleta(Long idColeta, String nomeBairro, double numeroVolume, Date dataColeta, Date dataRegistro, Rota rota) {
         this.idColeta = idColeta;
         this.nomeBairro = nomeBairro;
         this.numeroVolume = numeroVolume;

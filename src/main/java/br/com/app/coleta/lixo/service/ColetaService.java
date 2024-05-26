@@ -24,8 +24,8 @@ public class ColetaService {
         coletaRepository.save(new Coleta(coletaDTO.getNomeBairro(), coletaDTO.getNumeroVolume(), coletaDTO.dataColeta, coletaDTO.getDataRegistro()));
     }
 
-    public void reagendarColeta(ColetaDTO coletaDTO) {
-        coletaRepository.save(new Coleta(coletaDTO.getNomeBairro(), coletaDTO.getNumeroVolume(), coletaDTO.dataColeta, coletaDTO.getDataRegistro()));
+    public void reagendarColeta(ColetaDTO coletaDTO, String idColeta) {
+        coletaRepository.save(new Coleta(Long.valueOf(idColeta), coletaDTO.getNomeBairro(), coletaDTO.getNumeroVolume(), coletaDTO.dataColeta, coletaDTO.getDataRegistro(),null));
     }
 
     public void deletarColeta(String idColeta) {
