@@ -1,1 +1,3 @@
 # coleta-lixo-app
+
+## Desenvolvimento 

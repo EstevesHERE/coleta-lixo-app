@@ -1,0 +1,3 @@
+CREATE TABLE IF NOT EXISTS test(
+   nome VARCHAR(20) NOT NULL
+);
