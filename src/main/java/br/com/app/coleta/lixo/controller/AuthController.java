@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -34,26 +33,25 @@ public class AuthController {
             @RequestBody
             @Valid
             LoginDTO usuarioDTO
-            ){
-                UsernamePasswordAuthenticationToken usernamePassword =
-                        new UsernamePasswordAuthenticationToken(
-                                usuarioDTO.email(),
-                                usuarioDTO.senha());
+    ) {
+        UsernamePasswordAuthenticationToken usernamePassword =
+                new UsernamePasswordAuthenticationToken(
+                        usuarioDTO.email(),
+                        usuarioDTO.senha());
 
-                Authentication auth = authenticationManager.authenticate(usernamePassword);
+        Authentication auth = authenticationManager.authenticate(usernamePassword);
 
-                String token = tokenService.gerarToken((Usuario) auth.getPrincipal());
+        String token = tokenService.gerarToken((Usuario) auth.getPrincipal());
 
-                return ResponseEntity.ok(new TokenDTO(token));
+        return ResponseEntity.ok(new TokenDTO(token));
 
     }
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public UsuarioExibicaoDTO registrar(@RequestBody @Valid UsuarioCadastroDTO usuarioCadastroDTO){
+    public UsuarioExibicaoDTO registrar(@RequestBody @Valid UsuarioCadastroDTO usuarioCadastroDTO) {
         UsuarioExibicaoDTO usuarioSalvo = null;
         usuarioSalvo = usuarioService.salvarUsuario(usuarioCadastroDTO);
-
         return usuarioSalvo;
 
     }

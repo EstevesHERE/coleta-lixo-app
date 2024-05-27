@@ -1,13 +1,16 @@
 package br.com.app.coleta.lixo.controller;
 
-import br.com.app.coleta.lixo.dto.UsuarioCadastroDTO;
+import br.com.app.coleta.lixo.dto.UsuarioDTO;
+import br.com.app.coleta.lixo.models.Usuario;
 import br.com.app.coleta.lixo.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
+
+import static org.springframework.http.HttpStatus.NO_CONTENT;
 
 @RestController
 @RequiredArgsConstructor
@@ -15,6 +18,23 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsuarioController {
     private final UsuarioService usuarioService;
 
+    @GetMapping("/{idUsuario}")
+    public ResponseEntity<Optional<Usuario>> buscaUsuario(@PathVariable String idUsuario) {
+        var usuario = usuarioService.buscarUsuarioPorID(idUsuario);
+        return ResponseEntity.status(HttpStatus.OK).body(usuario);
+    }
 
+    @PutMapping("/{idUsuario}")
+    public ResponseEntity<?> alteraUsuario(@PathVariable String idUsuario,
+                                           @RequestBody UsuarioDTO usuarioDTO) {
+        usuarioService.alterarUsuario(usuarioDTO, idUsuario);
+        return ResponseEntity.status(NO_CONTENT).build();
+    }
+
+    @DeleteMapping("/{idUsuario}")
+    public ResponseEntity<?> delecaoUsuario(@PathVariable String idUsuario) {
+        usuarioService.deletarUsuario(idUsuario);
+        return ResponseEntity.status(NO_CONTENT).build();
+    }
 
 }

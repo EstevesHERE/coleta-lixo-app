@@ -1,5 +1,6 @@
 package br.com.app.coleta.lixo.models;
 
+import br.com.app.coleta.lixo.dto.UsuarioDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
@@ -74,5 +75,11 @@ public class Usuario implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public Usuario(UsuarioDTO usuarioDTO) {
+        this.idUsuario = usuarioDTO.getIdUsuario();
+        this.email = usuarioDTO.getEmail();
+        this.senha = usuarioDTO.getSenha();
     }
 }
