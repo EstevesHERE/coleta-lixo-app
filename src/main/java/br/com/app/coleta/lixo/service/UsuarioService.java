@@ -31,12 +31,9 @@ public class UsuarioService {
         return new UsuarioExibicaoDTO(usuarioSalvo);
     }
 
-    public Optional<Usuario> buscarUsuarioPorID(String idUsuario) {
-        return usuarioRepository.findById(Long.valueOf(idUsuario));
-    }
-
-    public void alterarUsuario(UsuarioDTO usuarioDTO, String idUsuario) {
-        usuarioRepository.save(new Usuario(usuarioDTO));
+    public UsuarioDTO buscarUsuarioPorID(String idUsuario) {
+        var usuario = usuarioRepository.findById(Long.valueOf(idUsuario)).orElse(null);
+        return new UsuarioDTO(usuario.getIdUsuario(), usuario.getNome(), usuario.getEmail(), null);
     }
 
     public void deletarUsuario(String idUsuario) {

@@ -3,7 +3,6 @@ package br.com.app.coleta.lixo.models;
 import br.com.app.coleta.lixo.dto.UsuarioDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -37,7 +36,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(this.role == UsuarioRole.ADMIN){
+        if (this.role == UsuarioRole.ADMIN) {
             return List.of(
                     new SimpleGrantedAuthority("ROLE_ADMIN"),
                     new SimpleGrantedAuthority("ROLE_USER")
@@ -77,9 +76,11 @@ public class Usuario implements UserDetails {
         return true;
     }
 
-    public Usuario(UsuarioDTO usuarioDTO) {
-        this.idUsuario = usuarioDTO.getIdUsuario();
-        this.email = usuarioDTO.getEmail();
-        this.senha = usuarioDTO.getSenha();
+    public Usuario(Long idUsuario, String nome, String email, String senha, UsuarioRole role) {
+        this.idUsuario = idUsuario;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.role = role;
     }
 }

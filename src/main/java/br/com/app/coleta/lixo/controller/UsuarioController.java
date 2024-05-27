@@ -19,16 +19,9 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
 
     @GetMapping("/{idUsuario}")
-    public ResponseEntity<Optional<Usuario>> buscaUsuario(@PathVariable String idUsuario) {
+    public ResponseEntity<UsuarioDTO> buscaUsuario(@PathVariable String idUsuario) {
         var usuario = usuarioService.buscarUsuarioPorID(idUsuario);
         return ResponseEntity.status(HttpStatus.OK).body(usuario);
-    }
-
-    @PutMapping("/{idUsuario}")
-    public ResponseEntity<?> alteraUsuario(@PathVariable String idUsuario,
-                                           @RequestBody UsuarioDTO usuarioDTO) {
-        usuarioService.alterarUsuario(usuarioDTO, idUsuario);
-        return ResponseEntity.status(NO_CONTENT).build();
     }
 
     @DeleteMapping("/{idUsuario}")
