@@ -8,6 +8,9 @@ jobs:
   checkout_java_docker:
     runs-on: ubuntu-latest
     steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+
       - name: Pull Request para develop
         uses: peter-evans/create-pull-request@v5
         with:
