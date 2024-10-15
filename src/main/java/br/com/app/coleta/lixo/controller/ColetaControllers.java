@@ -15,7 +15,7 @@ import static org.springframework.http.HttpStatus.NO_CONTENT;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/v1/coletas")
-public class ColetaController {
+public class ColetaControllers {
 
     private final ColetaService coletaService;
     @GetMapping
