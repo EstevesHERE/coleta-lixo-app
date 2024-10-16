@@ -5,7 +5,7 @@ on:
     branches: "feature/**"
 
 jobs:
-  Application Build:
+  application_build:
     runs-on: ubuntu-latest
     steps:
       - name: Git Checkout
