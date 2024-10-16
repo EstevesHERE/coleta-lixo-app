@@ -11,13 +11,20 @@ jobs:
       - name: Git Checkout
         uses: actions/checkout@v4
 
-      - name: Atualizar develop
-        run: git checkout develop && git pull
+      - name: Atualizar branch develop
+        run: git fetch origin develop && git checkout develop && git pull origin develop
 
       - name: Voltar para a branch atual
         run: git checkout ${{ github.ref_name }}
 
-      - name: Pull Request para develop
-        run: gh pr create -B ${{ github.ref_name }} -H develop --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
+      - name: Verificar se há diferenças
+        run: |
+          if git diff --quiet origin/develop; then
+            echo "No changes detected between branches"
+            exit 0
+          fi
+
+      - name: Criar Pull Request para develop
+        run: gh pr create -B develop -H ${{ github.ref_name }} --title 'Merge feature/add-unit-test into develop' --body 'Created by Github action'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
