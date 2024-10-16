@@ -46,6 +46,6 @@ jobs:
 
       - name: Criar Pull Request para develop
         if: ${{ success() }}
-        run: gh pr create -B develop -H ${{ github.ref_name }} --title 'Merge feature/add-unit-test into develop' --body 'Created by Github action'
+        run: gh pr create -B develop -H ${{ github.ref_name }} --title 'Merge ${{ github.ref_name }} into develop' --body 'Created by Github action'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
