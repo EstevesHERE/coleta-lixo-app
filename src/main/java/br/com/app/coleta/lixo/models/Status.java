@@ -1,5 +1,5 @@
 package br.com.app.coleta.lixo.models;
 
 public enum Status {
-    EM_ANDAMENTO, MANUTENCAO, AGUARDANDO_INICIO
+    EM_ANDAMENTO, MANUTENCAO, AGUARDANDO_INICIO, DISPONIVEL
 }

@@ -4,13 +4,12 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
-@Entity
-@Table(name = "tbl_rota")
+import static jakarta.persistence.GenerationType.*;
+
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
+@Entity(name = "tbl_rota")
 public class Rota {
     @Id
     @NotNull
