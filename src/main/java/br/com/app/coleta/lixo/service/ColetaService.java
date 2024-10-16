@@ -6,8 +6,8 @@ import br.com.app.coleta.lixo.repository.ColetaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -15,23 +15,21 @@ public class ColetaService {
 
     private final ColetaRepository coletaRepository;
 
-    public List<Coleta> buscarTodasColetas() {
-        LocalDate hoje = LocalDate.now();
-        return coletaRepository.findAll();
-
+    public List<ColetaDTO> buscarTodasColetas() {
+        var listColeta = coletaRepository.findAll();
+        return listColeta.stream().map(coleta -> new ColetaDTO(coleta.getIdColeta(), coleta.getNomeBairro(), coleta.getDataColeta(), coleta.getDataRegistro(), coleta.getNumeroVolume())).collect(Collectors.toList());
     }
 
     public void agendarColeta(ColetaDTO coletaDTO) {
-
+        coletaRepository.save(new Coleta(coletaDTO.getNomeBairro(), coletaDTO.getNumeroVolume(), coletaDTO.dataColeta, coletaDTO.getDataRegistro()));
     }
 
-    public void reagendarColeta() {
-
+    public void reagendarColeta(ColetaDTO coletaDTO, String idColeta) {
+        coletaRepository.save(new Coleta(Long.valueOf(idColeta), coletaDTO.getNomeBairro(), coletaDTO.getNumeroVolume(), coletaDTO.dataColeta, coletaDTO.getDataRegistro(),null));
     }
 
-    public void deletarColeta(Long idColeta) {
-        coletaRepository.deleteById(idColeta);
-
+    public void deletarColeta(String idColeta) {
+        coletaRepository.deleteById(Long.valueOf(idColeta));
     }
 
 }

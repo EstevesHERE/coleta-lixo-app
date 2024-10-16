@@ -1,15 +1,31 @@
 package br.com.app.coleta.lixo.dto;
 
-import jakarta.persistence.Column;
-import org.antlr.v4.runtime.misc.NotNull;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 
+@Getter
+@Setter
+@NoArgsConstructor
 public class ColetaDTO {
-    public long id_coleta;
-    public String nome_bairro;
+
+    @JsonProperty("id_coleta")
+    public long idColeta;
+    @JsonProperty("nome_bairro")
+    public String nomeBairro;
     public Date dataColeta;
     public Date dataRegistro;
-    public double numero_volume;
-    public RotaDTO rota;
+    @JsonProperty("numero_volume")
+    public double numeroVolume;
+
+    public ColetaDTO(long idColeta, String nomeBairro, Date dataColeta, Date dataRegistro, double numeroVolume) {
+        this.idColeta = idColeta;
+        this.nomeBairro = nomeBairro;
+        this.dataColeta = dataColeta;
+        this.dataRegistro = dataRegistro;
+        this.numeroVolume = numeroVolume;
+    }
 }

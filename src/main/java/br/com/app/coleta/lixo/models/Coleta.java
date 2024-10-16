@@ -6,18 +6,15 @@ import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.Date;
 
-@Entity
-@Table(name = "tbl_coleta")
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
+@Entity(name = "tbl_coleta")
 public class Coleta {
     @Id
     @Column(name = "id_coleta")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long idColeta;
+    public Long idColeta;
     @NotNull
     @Column(name = "nome_bairro")
     public String nomeBairro;
@@ -33,4 +30,20 @@ public class Coleta {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_rota")
     public Rota rota;
+
+    public Coleta(Long idColeta, String nomeBairro, double numeroVolume, Date dataColeta, Date dataRegistro, Rota rota) {
+        this.idColeta = idColeta;
+        this.nomeBairro = nomeBairro;
+        this.numeroVolume = numeroVolume;
+        this.dataColeta = dataColeta;
+        this.dataRegistro = dataRegistro;
+        this.rota = rota;
+    }
+
+    public Coleta(String nomeBairro, double numeroVolume, Date dataColeta, Date dataRegistro) {
+        this.nomeBairro = nomeBairro;
+        this.numeroVolume = numeroVolume;
+        this.dataColeta = dataColeta;
+        this.dataRegistro = dataRegistro;
+    }
 }

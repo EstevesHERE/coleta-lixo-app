@@ -1,8 +1,13 @@
 package br.com.app.coleta.lixo.dto;
 
-public class RotaDTO {
-    public long id_rota;
-    public String nome_rota;
-    public String descricao_rota;
-    public CaminhaoDTO caminhao;
-}
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public record RotaDTO(
+        @JsonProperty("id_rota")
+        long idRota,
+        @JsonProperty("nome_rota")
+        String nomeRota,
+        @JsonProperty("descricao_rota")
+        String descricaoRota,
+        CaminhaoDTO caminhao
+) { }

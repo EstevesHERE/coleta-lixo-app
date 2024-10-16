@@ -4,13 +4,13 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
-@Entity
-@Table(name = "tbl_caminhao")
+import static jakarta.persistence.EnumType.*;
+import static jakarta.persistence.GenerationType.*;
+
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
+@Entity(name = "tbl_caminhao")
 public class Caminhao {
 
     @Id
@@ -27,5 +27,6 @@ public class Caminhao {
     public int numeroMaxCapacidade;
     @NotNull
     @Column(name = "nome_status")
+    @Enumerated(value= STRING)
     public Status nomeStatus;
 }

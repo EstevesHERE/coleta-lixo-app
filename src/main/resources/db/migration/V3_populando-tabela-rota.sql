@@ -1,4 +1,4 @@
-USE COLETA;
+USE coleta_lixo;
 
 INSERT INTO tbl_rota (
     descricao_rota,

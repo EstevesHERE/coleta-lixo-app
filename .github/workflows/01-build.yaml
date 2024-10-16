@@ -1,0 +1,51 @@
+name: 01 - Build And Pull Request
+
+on:
+  push:
+    branches: "feature/**"
+
+jobs:
+  application_build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java SDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build
+        uses: docker/build-push-action@v6
+        with:
+          push: false
+
+      - name: Executar scripts
+        run: |
+          git branch
+          java --version 
+          mvn clean package
+
+      - name: Atualizar branch develop
+        if: ${{ success() }}
+        run: git fetch origin develop && git checkout develop && git pull origin develop
+
+      - name: Voltar para a branch atual
+        if: ${{ success() }}
+        run: git checkout ${{ github.ref_name }}
+
+      - name: Verificar se há diferenças
+        if: ${{ success() }}
+        run: |
+          if git diff --quiet origin/develop; then
+            echo "No changes detected between branches"
+            exit 0
+          fi
+
+      - name: Criar Pull Request para develop
+        if: ${{ success() }}
+        run: gh pr create -B develop -H ${{ github.ref_name }} --title 'Merge feature/add-unit-test into develop' --body 'Created by Github action'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
