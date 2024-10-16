@@ -11,6 +11,12 @@ jobs:
       - name: Git Checkout
         uses: actions/checkout@v4
 
+      - name: Atualizar branch develop
+        run: git fetch origin develop && git checkout develop && git pull origin develop
+
+      - name: Voltar para a branch atual
+        run: git checkout ${{ github.ref_name }}
+
       - name: Pull Request para develop
         run: gh pr create -B ${{ github.ref_name }} -H develop --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
         env:
