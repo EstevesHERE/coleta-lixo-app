@@ -1,6 +1,6 @@
 package br.com.app.coleta.lixo;
 
-import br.com.app.coleta.lixo.controller.ColetaControllers;
+import br.com.app.coleta.lixo.controller.ColetaController;
 import br.com.app.coleta.lixo.dto.ColetaDTO;
 import br.com.app.coleta.lixo.service.ColetaService;
 import org.junit.jupiter.api.DisplayName;
@@ -12,11 +12,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 
 @ExtendWith(MockitoExtension.class)
-public class ColetaControllersTest {
+public class ColetaControllerTest {
 
 
     @InjectMocks
-    private ColetaControllers coletaControllers;
+    private ColetaController coletaController;
     @Mock
     private ColetaService coletaService;
 
@@ -25,7 +25,7 @@ public class ColetaControllersTest {
     @DisplayName("Dado buscar todas as coletas, quando existente banco de dados então retornar status OK")
     void coletaControllerTest() {
 
-        final var listResponseEntity = coletaControllers.buscaTodasColetas();
+        final var listResponseEntity = coletaController.buscaTodasColetas();
         assert (listResponseEntity.getStatusCode().equals(HttpStatus.OK));
     }
 
@@ -33,7 +33,7 @@ public class ColetaControllersTest {
     @DisplayName("Dado agendar coletas, quando dados validos então retornar status CREATED")
     void coletaAgendamentoControllerTest() {
 
-        final var listResponseEntity = coletaControllers.agendaColeta(new ColetaDTO());
+        final var listResponseEntity = coletaController.agendaColeta(new ColetaDTO());
         assert (listResponseEntity.getStatusCode().equals(HttpStatus.CREATED));
     }
 
@@ -41,7 +41,7 @@ public class ColetaControllersTest {
     @DisplayName("Dado reagendamento coletas, quando id existente então retornar status NOCONTENT")
     void coletaReagendamentoControllerTest() {
 
-        final var listResponseEntity = coletaControllers.reagendamentoColeta("10", new ColetaDTO());
+        final var listResponseEntity = coletaController.reagendamentoColeta("10", new ColetaDTO());
         assert (listResponseEntity.getStatusCode().equals(HttpStatus.NO_CONTENT));
     }
 
@@ -50,7 +50,7 @@ public class ColetaControllersTest {
     @DisplayName("Dado deletar agendamento coleta, quando id existente então retornar status NOCONTENT")
     void coletaDeletarControllerTest() {
 
-        final var listResponseEntity = coletaControllers.delecaoAgendamento("10");
+        final var listResponseEntity = coletaController.delecaoAgendamento("10");
         assert (listResponseEntity.getStatusCode().equals(HttpStatus.NO_CONTENT));
     }
 

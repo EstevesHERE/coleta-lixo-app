@@ -27,3 +27,13 @@ jobs:
           git branch
           java --version 
           mvn clean package
+
+      - name: Pull Request para develop
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: "Build realizado na branch ${{ github.ref_name }} e pronto para merge"
+          branch: "${{ github.ref_name }}"
+          base: develop
+          title: "Build pronto para merge na develop"
+          body: |
+            Este PR foi criado automaticamente após a conclusão bem-sucedida do build.
