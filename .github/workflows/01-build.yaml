@@ -1,11 +1,11 @@
-name: 01 - Build And PR
+name: 01 - Build And Pull Request
 
 on:
   push:
     branches: "feature/**"
 
 jobs:
-  checkout_java_docker:
+  Application Build:
     runs-on: ubuntu-latest
     steps:
       - name: Git Checkout
