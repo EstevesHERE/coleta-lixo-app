@@ -22,21 +22,10 @@ public class SecurityConfig {
     private VerificarToken verificarToken;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/v1/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/v1/auth/register").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/v1/coletas").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/v1/coletas/agendamento").hasRole("ADMIN")
-                        .anyRequest().authenticated()
-                )
-                .addFilterBefore(
-                        verificarToken,
-                        UsernamePasswordAuthenticationFilter.class
-                )
                 .build();
 
     }
