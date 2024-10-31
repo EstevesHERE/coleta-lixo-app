@@ -12,10 +12,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.UNAUTHORIZED;
+
 @RestControllerAdvice
 public class ApplicationExceptionHandler {
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+
+    @ResponseStatus(BAD_REQUEST)
+    @ExceptionHandler(RuntimeException.class)
+    public Map<String, String> handleInvalidArgument(RuntimeException error) {
+        Map<String, String> errorMap = new HashMap<>();
+
+        errorMap.put("error", "ID não encontrado");
+
+        return errorMap;
+    }
+
+    @ResponseStatus(BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleInvalidArgument(MethodArgumentNotValidException error) {
         Map<String, String> errorMap = new HashMap<>();
@@ -28,7 +42,7 @@ public class ApplicationExceptionHandler {
         return errorMap;
     }
 
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ResponseStatus(UNAUTHORIZED)
     @ExceptionHandler(DataIntegrityViolationException.class)
     public Map<String, String> handleIntegrityViolation(DataIntegrityViolationException error) {
         Map<String, String> errorMap = new HashMap<>();

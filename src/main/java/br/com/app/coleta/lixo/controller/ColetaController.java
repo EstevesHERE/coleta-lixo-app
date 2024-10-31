@@ -2,6 +2,7 @@ package br.com.app.coleta.lixo.controller;
 
 import br.com.app.coleta.lixo.dto.ColetaDTO;
 import br.com.app.coleta.lixo.service.ColetaService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class ColetaController {
     }
 
     @PostMapping("/agendamento")
-    public ResponseEntity<?> agendaColeta(@RequestBody ColetaDTO coletaDTO) {
+    public ResponseEntity<?> agendaColeta(@RequestBody @Valid ColetaDTO coletaDTO) {
         coletaService.agendarColeta(coletaDTO);
         return ResponseEntity.status(CREATED).build();
     }

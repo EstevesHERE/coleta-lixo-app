@@ -1,6 +1,7 @@
 package br.com.app.coleta.lixo.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,6 +15,7 @@ public class ColetaDTO {
 
     @JsonProperty("id_coleta")
     public long idColeta;
+    @NotNull(message = "Campo Inválido")
     @JsonProperty("nome_bairro")
     public String nomeBairro;
     public Date dataColeta;
