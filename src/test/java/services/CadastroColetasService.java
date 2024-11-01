@@ -45,20 +45,4 @@ public class CadastroColetasService {
         System.out.println("Corpo da requisição: " + response);
 
     }
-
-    public void retriverIdDelivery(){
-        idColeta = "1";
-    }
-
-    public void deleteColeta(String endPoint) {
-        //String url = baseUrl + endPoint;
-        String url = String.format("%s/%s", baseUrl, endPoint, idColeta);
-        response = given()
-                .accept(ContentType.JSON)
-                .when()
-                .delete(url)
-                .then()
-                .extract()
-                .response();
-    }
 }

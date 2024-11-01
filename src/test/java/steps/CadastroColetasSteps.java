@@ -31,21 +31,4 @@ public class CadastroColetasSteps {
         Assert.assertEquals(statusCode, cadastroColetasService.response.statusCode());
     }
 
-    @E("o corpo de resposta de erro da api deve retornar a mensagem {string}")
-    public void oCorpoDeRespostaDeErroDaApiDeveRetornarAMensagem(String message) {
-        ErroMessageModel erroMessageModel = cadastroColetasService.gson.fromJson(
-                cadastroColetasService.response.jsonPath().prettify(), ErroMessageModel.class
-        );
-        Assert.assertEquals(message, erroMessageModel.getMessage());
-    }
-
-    @Dado("que eu recupere o ID da coleta criada no contexto")
-    public void queEuRecupereOIDDaColetaCriadaNoContexto() {
-        cadastroColetasService.retriverIdDelivery();
-    }
-
-    @Quando("eu enviar a requisição para o endpoint {string} de cadastro de coleta")
-    public void euEnviarARequisiçãoParaOEndpointDeCadastroDeColeta(String endPoint) {
-        cadastroColetasService.deleteColeta(endPoint);
-    }
 }
