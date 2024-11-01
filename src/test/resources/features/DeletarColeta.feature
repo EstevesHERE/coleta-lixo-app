@@ -17,5 +17,5 @@ Funcionalidade: Deletar uma coleta
 
   Cenário: Deve ser possível deletar uma coleta
     Dado que eu recupere o ID da coleta criada no contexto
-    Quando eu enviar a requisição com o ID para o endpoint "/agendamento" de deleção de coleta
+    Quando eu enviar a requisição para o endpoint "/agendamento" de agendamento de coletas
     Então o status code da resposta deve ser 204

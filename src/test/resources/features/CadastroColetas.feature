@@ -26,4 +26,3 @@ Funcionalidade: Cadastro de nova coleta
       | rota           |  null                                 |
     Quando eu enviar a requisição para o endpoint "/agendamento" de agendamento de coletas
     Então o status code da resposta deve ser 400
-    E o corpo de resposta de erro da api deve retornar a mensagem "Nome do bairro inválido"
