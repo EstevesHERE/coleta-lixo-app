@@ -29,7 +29,17 @@ public class ColetaService {
     }
 
     public void deletarColeta(String idColeta) {
+
+        final var coleta = coletaRepository.findById(Long.valueOf(idColeta));
+
+        if(!coleta.isPresent()) {
+            throw new RuntimeException("ID não encontrado");
+        }
         coletaRepository.deleteById(Long.valueOf(idColeta));
+    }
+
+    public Coleta buscarColeta(String idColeta){
+        return coletaRepository.findById(Long.valueOf(idColeta)).get();
     }
 
 }

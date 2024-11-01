@@ -1,0 +1,71 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1730422027.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "idColeta",
+    "nomeBairro",
+    "numeroVolume",
+    "dataColeta",
+    "dataRegistro",
+    "rota"
+  ],
+  "properties": {
+    "idColeta": {
+      "$id": "#root/idColeta",
+      "title": "Idcoleta",
+      "type": "integer",
+      "examples": [
+        2
+      ],
+      "default": 0
+    },
+    "nomeBairro": {
+      "$id": "#root/nomeBairro",
+      "title": "Nomebairro",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "Vila cesar"
+      ],
+      "pattern": "^.*$"
+    },
+    "numeroVolume": {
+      "$id": "#root/numeroVolume",
+      "title": "Numerovolume",
+      "type": "integer",
+      "examples": [
+        15000
+      ],
+      "default": 0
+    },
+    "dataColeta": {
+      "$id": "#root/dataColeta",
+      "title": "Datacoleta",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "2024-05-03T03:00:00.000+00:00"
+      ],
+      "pattern": "^.*$"
+    },
+    "dataRegistro": {
+      "$id": "#root/dataRegistro",
+      "title": "Dataregistro",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "2024-05-26T21:40:43.000+00:00"
+      ],
+      "pattern": "^.*$"
+    },
+    "rota": {
+      "$id": "#root/rota",
+      "title": "Rota",
+      "type": "null",
+      "default": null
+    }
+  }
+}
