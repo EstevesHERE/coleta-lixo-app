@@ -1,4 +1,5 @@
 # language: pt
+@regressivo
 Funcionalidade: Cadastro de nova coleta
   Como usuário da API de coleta de lixo
   Quero cadastrar uma nova coleta

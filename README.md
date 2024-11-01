@@ -40,36 +40,12 @@ Primeiramente, pelo terminal vá até a pasta do projeto já clonado e execute o
 
 ---
 
-## 3. Autenticação para uso das rotas
+---
 
-Por meio do Postman ou insomnia, faça as requisições para as rotas:
+## 3. Teste da API
 
-Criação de um novo usuário:
+Para utilização dos breakpoints foi inserido arquivos de migrations para uma fácil utilização, através do pacote resources/db.migrations
 
-Rota: http://localhost:8080/v1/auth/register
-Corpo exemplo:
+## 4. Testes automatizados
 
-```bash
-  {
-    "nome": "vanessa",
-    "email": "vanessa@gmail.com",
-    "senha": "1234",
-    "role": "ADMIN"
-}
-```
-
-
-Rota para pegar o token que será utilizado nas outras requisições:
-
-
-Rota: http://localhost:8080/v1/auth/login
-Corpo exemplo:
-
-```bash
- {
-    "email": "admin@gmail.com",
-    "senha": "1234"
-}
-```
-
-O retorno terá um Token que será usado na key Authorization do header
+- Executar rodar a classe TestRunner, localizada em test/runner.

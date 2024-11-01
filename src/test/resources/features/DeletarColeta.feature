@@ -1,4 +1,5 @@
 # language: pt
+@regressivo
 Funcionalidade: Deletar uma coleta
   Como usuário da API
   Quero conseguir deletar uma coleta
