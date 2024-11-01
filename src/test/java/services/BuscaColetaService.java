@@ -34,7 +34,7 @@ public class BuscaColetaService {
             case "nome_bairro" -> coleta.setNome_bairro(value);
             case "numero_volume" -> coleta.setNumero_volume(Double.parseDouble(value));
             case "rota" -> coleta.setRota(null);
-            case "idColeta" -> coleta.setId_coleta(Integer.parseInt(value));
+            case "idColeta" -> coleta.setIdColeta(Integer.parseInt(value));
             default -> throw new IllegalStateException("Campo inesperado: " + field);
         }
     }

@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class ColetaModel {
     @Expose(serialize = false)
-    private int id_coleta;
+    private int idColeta;
 
     @Expose
     private String dataColeta;

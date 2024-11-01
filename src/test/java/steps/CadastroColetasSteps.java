@@ -44,11 +44,6 @@ public class CadastroColetasSteps {
         cadastroColetasService.retriverIdDelivery();
     }
 
-    @Quando("eu enviar a requisição com o ID para o endpoint {string} de deleção de coleta")
-    public void euEnviarARequisiçãoComOIDParaOEndpointDeDeleçãoDeColeta(String endPoint) {
-
-    }
-
     @Quando("eu enviar a requisição para o endpoint {string} de cadastro de coleta")
     public void euEnviarARequisiçãoParaOEndpointDeCadastroDeColeta(String endPoint) {
         cadastroColetasService.deleteColeta(endPoint);

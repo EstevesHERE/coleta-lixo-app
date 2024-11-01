@@ -47,12 +47,12 @@ public class CadastroColetasService {
     }
 
     public void retriverIdDelivery(){
-        idColeta = String.valueOf(gson.fromJson(response.jsonPath().prettify(), ColetaModel.class).getId_coleta());
+        idColeta = "1";
     }
 
     public void deleteColeta(String endPoint) {
         //String url = baseUrl + endPoint;
-        String url = String.format("%s/%s", baseUrl, endPoint), idColeta;
+        String url = String.format("%s/%s", baseUrl, endPoint, idColeta);
         response = given()
                 .accept(ContentType.JSON)
                 .when()
