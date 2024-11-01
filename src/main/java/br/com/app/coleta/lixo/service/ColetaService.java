@@ -38,4 +38,8 @@ public class ColetaService {
         coletaRepository.deleteById(Long.valueOf(idColeta));
     }
 
+    public Coleta buscarColeta(String idColeta){
+        return coletaRepository.findById(Long.valueOf(idColeta)).get();
+    }
+
 }

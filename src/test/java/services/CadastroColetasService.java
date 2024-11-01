@@ -9,8 +9,6 @@ import model.ColetaModel;
 import static io.restassured.RestAssured.given;
 
 public class CadastroColetasService {
-
-    private String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ1c3VhcmlvIiwic3ViIjoiYWRtaW5AZ21haWwuY29tIiwiZXhwIjoxNzMwNDE5MjAwfQ.cQmQTjVoKODe0Sh6nu8Isev5Tj8jImg6SJmcXj59CYI";
     final ColetaModel coleta = new ColetaModel();
     public final Gson gson = new GsonBuilder()
             .excludeFieldsWithoutExposeAnnotation()
@@ -38,30 +36,29 @@ public class CadastroColetasService {
         response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", token)
                 .body(bodyToSend)
                 .when()
                 .post(url)
                 .then()
                 .extract()
                 .response();
-        System.out.println("Corpo da requisição: " + url);
+        System.out.println("Corpo da requisição: " + response);
 
     }
 
+    public void retriverIdDelivery(){
+        idColeta = String.valueOf(gson.fromJson(response.jsonPath().prettify(), ColetaModel.class).getId_coleta());
+    }
+
     public void deleteColeta(String endPoint) {
-        String url = baseUrl + endPoint;
+        //String url = baseUrl + endPoint;
+        String url = String.format("%s/%s", baseUrl, endPoint), idColeta;
         response = given()
                 .accept(ContentType.JSON)
-                .header("Authorization", token)
                 .when()
                 .delete(url)
                 .then()
                 .extract()
                 .response();
-    }
-
-    public void retriverIdDelivery(){
-        idColeta = String.valueOf(gson.fromJson(response.jsonPath().prettify(), ColetaModel.class).getId_coleta());
     }
 }

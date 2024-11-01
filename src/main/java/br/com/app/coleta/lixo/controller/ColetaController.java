@@ -1,6 +1,7 @@
 package br.com.app.coleta.lixo.controller;
 
 import br.com.app.coleta.lixo.dto.ColetaDTO;
+import br.com.app.coleta.lixo.models.Coleta;
 import br.com.app.coleta.lixo.service.ColetaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -10,8 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.NO_CONTENT;
+import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -41,5 +41,11 @@ public class ColetaController {
     public ResponseEntity delecaoAgendamento(@PathVariable String idColeta) {
         coletaService.deletarColeta(idColeta);
         return ResponseEntity.status(NO_CONTENT).build();
+    }
+
+    @GetMapping("/agendamento/{idColeta}")
+    public ResponseEntity<Coleta> buscaColeta(@PathVariable String idColeta) {
+        var coleta = coletaService.buscarColeta(idColeta);
+        return ResponseEntity.status(OK).body(coleta);
     }
 }
